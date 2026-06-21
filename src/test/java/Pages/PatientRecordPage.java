@@ -28,12 +28,6 @@ public class PatientRecordPage {
     @FindBy(xpath = "//td[text()='100DAV']")
     public WebElement recordedPatient;
 
-    @FindBy(css = "div[class='info-body']")
-    public WebElement patientInfoBody;
-
-    @FindBy(css = "div[class='info-header']")
-    public WebElement patientInfoHeader;
-
     @FindBy(className = "dataTables_empty")
     public WebElement noMatchAllert;
 
@@ -55,40 +49,75 @@ public class PatientRecordPage {
     @FindBy(id = "patient-search")
     public WebElement patientSearch;
 
-    public void searchRecordedPatient() {
-        searchButton.sendKeys("100DAV");
+    public void searchRecordedPatient(String patientID) {
+        searchButton.sendKeys(patientID);
         recordedPatient.click();
     }
 
-    public void printPatientInfo(){
-        List<WebElement> infoHeader =
-                driver.findElements(By.cssSelector("div[class='info-header']"));
-        List<WebElement> infoBody =
-                driver.findElements(By.cssSelector("div[class='info-body']"));
+    public void printDiagnoses(){
+        System.out.println("=========DIAGNOSES=========");
+        WebElement diagnosesPanel = driver.findElement(By.id("coreapps-diagnosesList"));
+        System.out.println(diagnosesPanel.getText());
+    }
 
-        for (int i = 1; i < infoBody.size(); i+=11){
-            System.out.println("DIAGNOSES: " + infoBody.get(i).getText());
-            System.out.println("RECENT VISITS: " + infoBody.get(i+6).getText());
+    public void printLtestOperationts(){
+        System.out.println("=========OPERATIONS=========");
+        WebElement operationsPanel = driver.findElement(By.xpath("//h3[contains(text(),'DIAGNOSES')]"));
+        System.out.println(operationsPanel.getText());
+    }
 
-            }
-        }
+    public void printVitals(){
+        System.out.println("=========VITALS=========");
+        WebElement vitalsPanel = driver.findElement(By.id("vitals"));
+        System.out.println(vitalsPanel.getText());
+    }
 
-        public void compareNumbers(){
+    public void printRecentVisits(){
+        System.out.println("=========VISITS=========");
+        WebElement recentVisitPanel = driver.findElement(By.xpath("//h3[contains(text(),'RECENT VISITS')]"));
+        System.out.println(recentVisitPanel.getText());
+    }
 
-            String text = driver.findElement(By.id("patient-search-results-table_info")).getText();
-            String[] parts = text.split(" ");
-            int expectedCount = Integer.parseInt(parts[3]);
-            System.out.println(expectedCount);
+    public void printFamilyPanel(){
+        System.out.println("=========FAMILY=========");
+        WebElement familyPanel = driver.findElement(By.xpath("//h3[contains(text(),'FAMILY')]"));
+        System.out.println(familyPanel.getText());
+    }
 
-            List<WebElement> patientsCount = driver.findElements(By.cssSelector("tr[class='odd']"));
-            int displayedCount = patientsCount.size();
-            List<WebElement> patientCount2 = driver.findElements(By.cssSelector("tr[class='even']"));
-            int displayedCount2 = patientCount2.size();
-            int displayedTotalCount = displayedCount + displayedCount2;
+    public void printConditionsPanel(){
+        System.out.println("=========CONDITIONS=========");
+        WebElement conditionsPanel = driver.findElement(By.xpath("//h3[contains(text(),'CONDITIONS')]"));
+        System.out.println(conditionsPanel.getText());
+    }
 
-            System.out.println(displayedTotalCount);
+    public void printAttachmentsPanel() {
+        System.out.println("=========ATTACHMENTS=========");
+        WebElement attechmentPanel = driver.findElement(By.xpath("//h3[contains(text(),'ATTACHMENTS')]"));
+        System.out.println(attechmentPanel.getText());
+    }
 
-            Assert.assertEquals(displayedTotalCount,expectedCount,"Results does not match");
+    public void printAllergiesPanel() {
+        System.out.println("=========ALLERGIES=========");
+        WebElement allergiesPanel = driver.findElement(By.xpath("//h3[contains(text(),'ALLERGIES')]"));
+        System.out.println(allergiesPanel.getText());
+    }
+
+    public void compareNumbers(){
+
+        String text = driver.findElement(By.id("patient-search-results-table_info")).getText();
+        String[] parts = text.split(" ");
+        int expectedCount = Integer.parseInt(parts[3]);
+        System.out.println(expectedCount);
+
+        List<WebElement> patientsCount = driver.findElements(By.cssSelector("tr[class='odd']"));
+        int displayedCount = patientsCount.size();
+        List<WebElement> patientCount2 = driver.findElements(By.cssSelector("tr[class='even']"));
+        int displayedCount2 = patientCount2.size();
+        int displayedTotalCount = displayedCount + displayedCount2;
+
+        System.out.println(displayedTotalCount);
+
+        Assert.assertEquals(displayedTotalCount,expectedCount,"Results does not match");
 
         }
     }

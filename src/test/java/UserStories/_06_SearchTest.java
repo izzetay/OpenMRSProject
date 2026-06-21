@@ -28,8 +28,14 @@ public class _06_SearchTest extends BaseDriver {
         logger.info("User has been logged in succesfully");
         FindPatientRecordPage = new PatientRecordPage(driver,wait);
         FindPatientRecordPage.patientInfoButton.click();
-        FindPatientRecordPage.searchRecordedPatient();
-        FindPatientRecordPage.printPatientInfo();
+        FindPatientRecordPage.searchRecordedPatient("100J8U");
+        FindPatientRecordPage.printDiagnoses();
+        FindPatientRecordPage.printVitals();
+        FindPatientRecordPage.printRecentVisits();
+        FindPatientRecordPage.printFamilyPanel();
+        FindPatientRecordPage.printConditionsPanel();
+        FindPatientRecordPage.printAttachmentsPanel();
+        FindPatientRecordPage.printAllergiesPanel();
         logger.info("Patient record is printed");
 
     }

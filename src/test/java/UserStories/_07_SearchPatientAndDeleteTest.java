@@ -26,7 +26,7 @@ public class _07_SearchPatientAndDeleteTest extends BaseDriver {
         logger.info("User has been logged in succesfully");
         PatientRecordPage = new PatientRecordPage(driver, wait);
         PatientRecordPage.patientInfoButton.click();
-        PatientRecordPage.searchRecordedPatient();
+        PatientRecordPage.searchRecordedPatient("100J8U");
         PatientRecordPage.deletePatientButton.click();
         PatientRecordPage.deleteReason.sendKeys("Patient has been discharged");
         PatientRecordPage.confirmButton.click();

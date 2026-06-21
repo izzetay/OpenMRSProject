@@ -66,9 +66,6 @@ public class registerPage {
     @FindBy(xpath = "//input[@name='phoneNumber']")
     public WebElement phoneNumberInput;
 
-    @FindBy(id = "relationship_type")
-    public WebElement relatedDropdown;
-
     @FindBy(css = "option[data-val='Doctor']")
     public WebElement relatedSelectDoctor;
 
