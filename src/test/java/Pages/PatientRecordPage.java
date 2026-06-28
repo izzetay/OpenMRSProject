@@ -28,9 +28,6 @@ public class PatientRecordPage {
     @FindBy(xpath = "//td[text()='100DAV']")
     public WebElement recordedPatient;
 
-    @FindBy(className = "dataTables_empty")
-    public WebElement noMatchAllert;
-
     @FindBy(xpath = "//*[normalize-space()='Delete Patient']")
     public WebElement deletePatientButton;
 
@@ -60,7 +57,7 @@ public class PatientRecordPage {
         System.out.println(diagnosesPanel.getText());
     }
 
-    public void printLtestOperationts(){
+    public void printLatestOperationts(){
         System.out.println("=========OPERATIONS=========");
         WebElement operationsPanel = driver.findElement(By.xpath("//h3[contains(text(),'DIAGNOSES')]"));
         System.out.println(operationsPanel.getText());
